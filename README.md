@@ -43,12 +43,12 @@ HuggingFace publishes an [Overview of model-support](https://huggingface.co/docs
 If you haven't done so, go to <https://brew.sh/> and follow the instructions to install homebrew.
 Once done, open a terminal and type `brew --version` to check that it is installed correctly.
 
-Now use `brew` to install more recent versions of `python` and `git`. The recommendation is to use Homebrew's default Python 3.12, if you are not planning to use Tensorflow with Metal optimization (still requires 3.11 (at 2024-04)).
+Now use `brew` to install more recent versions of `python` and `git`. The recommendation is to use Homebrew's default Python 3.13, if you are not planning to use Tensorflow with Metal optimization (still requires 3.11 (at 2024-04)).
 
-#### Current Python for Huggingface, Pytorch, JAX, and MLX, Python 3.12, Homebrew default
+#### Current Python for Huggingface, Pytorch, JAX, and MLX, Python 3.13, Homebrew default
 
 ```bash
-brew install python@3.12 git
+brew install python@3.13 git
 ```
 
 #### Legacy installations (Tensorflow), Python 3.11 ![Optional](http://img.shields.io/badge/optional-brightgreen.svg?style=flat)
@@ -64,18 +64,18 @@ brew install python@3.11 git
 #### Make homebrew's Python the system-default ![Optional](http://img.shields.io/badge/optional-brightgreen.svg?style=flat)
 
 > ![Note:](http://img.shields.io/badge/📝-Note:-green.svg?style=flat) Apple does not put too much energy into keeping MacOS's python up-to-date. If you want to use an up-to-date default python, it makes sense to make homebrew's python the default system python.
-So, if, you want to use homebrew's Python 3.11 or 3.12 system-globally, the easiest way
-way to do so (after `brew install python@3.12` or `3.11`):
+So, if, you want to use homebrew's Python 3.11 or 3.13 system-globally, the easiest way
+way to do so (after `brew install python@3.13` or `3.11`):
 
 Edit `~/.zshrc` and insert:
 
 ```bash
-# This is OPTIONAL and only required if you want to make homebrew's Python 3.12 as the global version:
-export PATH="/opt/homebrew/opt/python@3.12/bin:$PATH"                     
-export PATH=/opt/homebrew/opt/python@3.12/libexec/bin:$PATH
+# This is OPTIONAL and only required if you want to make homebrew's Python 3.13 as the global version:
+export PATH="/opt/homebrew/opt/python@3.13/bin:$PATH"                     
+export PATH=/opt/homebrew/opt/python@3.13/libexec/bin:$PATH
 ```
 
-Change all references of `3.12` to `3.11` when wanting to make homebrew's Python 3.11 system-standard python.
+Change all references of `3.13` to `3.11` when wanting to make homebrew's Python 3.11 system-standard python.
 
 (Restart your terminal to activate the path changes, or enter `source ~/.zshrc` in your current terminal session.)
 
@@ -93,12 +93,12 @@ This clones the test-project into a directory `HuggingFaceGuidedTourForMac`
 
 #### Virtual environment
 
-Now create a Python 3.12 environment for this project and activate it:
+Now create a Python 3.13 environment for this project and activate it:
 
 (Again: replace with `3.11`, if you need)
 
 ```bash
-python3.12 -m venv HuggingFaceGuidedTourForMac
+python3.13 -m venv HuggingFaceGuidedTourForMac
 ```
 
 Creating a venv adds the files required (python binaries, libraries, configs) for the virtual python environment to the project folder we just cloned, using again the same directory `HuggingFaceGuidedTourForMac`. Enter the directory and activate the virtual environment:
@@ -115,7 +115,7 @@ Now the directory `HuggingFaceGuidedTourForMac` contains the content of the gith
 **Alternatives:** If you have many different python versions installed, you can create an environment that uses a specific version by specifying the path of the python that is used to create the `venv`, e.g.: 
 
 ```bash
-/opt/homebrew/opt/python@3.12/bin/python3.12 -m venv my_new_312_env
+/opt/homebrew/opt/python@3.13/bin/python3.13 -m venv my_new_312_env
 ```
 
 uses homebrew's python explicitly to create a new `venv`, whereas
@@ -159,7 +159,7 @@ _Even is the working directoy is changed (here to `home`), since the `venv` is s
 
 Make sure that your virtual environment is active with `pip -V` (uppercase V), this should show a path for `pip` within your project:
 
-`<your-path>/HuggingFaceGuidedTourForMac/lib/python3.12/site-packages/pip (python 3.12)`
+`<your-path>/HuggingFaceGuidedTourForMac/lib/python3.13/site-packages/pip (python 3.13)`
 
 Following `https://pytorch.org`, we will install Pytorch with `pip`. You need at least version 2.x (default since 2023) in order to get MPS (Metal Performance Shaders) support within pytorch, which offers significant performance advantage on Apple Silicon.
 
@@ -219,7 +219,7 @@ pip install -U jax==0.4.26 jaxlib==0.4.26 jax-metal
 
 #### 4.2 Quick-test JAX
 
-Start `python` (3.12 is supported) and enter:
+Start `python` (3.13 is supported) and enter:
 
 ```python
 import jax
@@ -263,7 +263,7 @@ Your version of `jax` and `jaxlib` are incompatible with `jax-metal`. Check the 
 
 > ![Warning:](http://img.shields.io/badge/⚠-Note:-orange.svg?style=flat) Tensorflow is losing support fast, and not even Google publishes new models for Tensorflow. A migration plan is recommended, if you plan to use this.
 
-> ![Note:](http://img.shields.io/badge/📝-Note:-green.svg?style=flat) While Tensorflow supports Python 3.12 since 2.16, the macOS `tensorflow-metal` accelerator has not been updated since 2023-09 (status of 2024-07) and requires Python 3.11:
+> ![Note:](http://img.shields.io/badge/📝-Note:-green.svg?style=flat) While Tensorflow supports Python 3.13 since 2.16, the macOS `tensorflow-metal` accelerator has not been updated since 2023-09 (status of 2024-07) and requires Python 3.11:
 
 Make sure that your virtual environment is active with `pip -V` (uppercase V), this should show a path for `pip` within your project:
 
@@ -451,7 +451,7 @@ Additional modifications are (all of them are inactive, once miniconda is remove
 - 2024-04-28: Added JAX installation with Metal support and quick-test.
 - 2024-04-26: Apple's corenet
 - 2024-04-22: Llama 3.
-- 2024-02-24: (Guide version 3.0) Updates for Python 3.12 and Apple MLX framework, Tensorflow is legacy-option.
+- 2024-02-24: (Guide version 3.0) Updates for Python 3.13 and Apple MLX framework, Tensorflow is legacy-option.
 - 2023-12-14: Pin python version of homebrew to 3.11.
 - 2023-10-30: Restested with macOS 14.1 Sonoma, Tensorflow 2.14, Pytorch 2.1. Next steps added for more advanced projects.
 - 2023-09-25: (Guide version 2.0) Switched from `conda` to `pip` and `venv` for latest versions of tensorflow 2.13, Pytorch 2, macOS Sonoma, installation is now much simpler.
